@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Lista de Técnicos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="tecnicos.length > 0">
+    <ion-item-sliding *ngFor="let tecnico of tecnicos">
+      <ion-item>
+        <ion-avatar slot="start">
+          <div style="background: var(--ion-color-secondary); color: white; display: flex; align-items: center; justify-content: center; height: 100%; font-weight: bold;">
+            {{ tecnico.nome.charAt(0) }}
+          </div>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ tecnico.nome }}</h2>
+          <p>{{ tecnico.especialidade }}</p>
+          <p><small>{{ tecnico.situacao }}</small></p>
+        </ion-label>
+        <ion-badge slot="end" [color]="tecnico.situacao === 'Ativo' ? 'success' : 'medium'">
+          {{ tecnico.situacao }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="excluirTecnico(tecnico.id)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div *ngIf="tecnicos.length === 0" class="ion-padding ion-text-center">
+    <p>Nenhum técnico cadastrado.</p>
+    <ion-button (click)="irParaCadastro()">Cadastrar Técnico</ion-button>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="irParaCadastro()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

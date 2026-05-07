@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/lista-chamados"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Chamado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div *ngIf="chamado">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>ID: {{ chamado.id }}</ion-card-subtitle>
+        <ion-card-title>{{ chamado.titulo }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p><strong>Solicitante:</strong> {{ chamado.solicitante }}</p>
+        <p><strong>Setor:</strong> {{ chamado.setor }}</p>
+        <p><strong>Data:</strong> {{ chamado.dataAbertura }}</p>
+        <p><strong>Técnico:</strong> {{ chamado.tecnico }}</p>
+        <p>
+          <strong>Prioridade:</strong> 
+          <ion-badge [color]="getPriorityColor(chamado.prioridade)">{{ chamado.prioridade }}</ion-badge>
+        </p>
+        <p><strong>Descrição:</strong></p>
+        <p>{{ chamado.descricao }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list lines="full">
+      <ion-list-header>
+        <ion-label>Atualizar Atendimento</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label position="stacked">Status Atual</ion-label>
+        <ion-select [(ngModel)]="novoStatus" placeholder="Selecione o status">
+          <ion-select-option *ngFor="let status of statusOpcoes" [value]="status">
+            {{ status }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Observações do Técnico</ion-label>
+        <ion-textarea [(ngModel)]="novaObservacao" rows="4" placeholder="Descreva o que foi feito..."></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" (click)="salvarAlteracoes()">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Salvar Alterações
+      </ion-button>
+      
+      <ion-button expand="block" color="danger" fill="outline" (click)="excluirChamado()" class="ion-margin-top">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Excluir Chamado
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

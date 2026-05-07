@@ -1,0 +1,36 @@
+<ion-app>
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Navegação</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-toggle>
+            <ion-button shape="round" color="light" fill="solid" size="small" style="--padding-start: 8px; --padding-end: 8px;">
+              <ion-icon name="menu" style="color: var(--ion-color-primary); font-size: 20px;"></ion-icon>
+            </ion-button>
+          </ion-menu-toggle>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item button (click)="navegar('/menu')">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          <ion-label>Menu Principal</ion-label>
+        </ion-item>
+        <ion-item button (click)="navegar('/cadastro-usuario')">
+          <ion-icon slot="start" name="person-add-outline"></ion-icon>
+          <ion-label>Cadastro de Usuário</ion-label>
+        </ion-item>
+        <ion-item button (click)="irParaLogin()">
+          <ion-icon slot="start" name="log-in-outline"></ion-icon>
+          <ion-label>Voltar ao Login</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div class="ion-page" id="main-content">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-app>

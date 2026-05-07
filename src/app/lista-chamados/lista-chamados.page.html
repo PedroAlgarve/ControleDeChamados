@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de Chamados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="list-header">
+    <h2>Relatório de Chamados</h2>
+    <p>{{ chamados.length }} chamados registrados</p>
+  </div>
+
+  <div *ngIf="chamados.length === 0" class="empty-state">
+    <ion-icon name="clipboard-outline"></ion-icon>
+    <h3>Nenhum chamado encontrado</h3>
+    <p>Os novos chamados aparecerão aqui.</p>
+  </div>
+
+  <ion-list lines="none">
+    <ion-item-sliding *ngFor="let chamado of chamados">
+      <ion-item class="chamado-item" (click)="verDetalhes(chamado)">
+        <div class="priority-indicator" [class]="getPriorityColor(chamado.prioridade)"></div>
+        
+        <ion-label>
+          <div class="item-header">
+            <h3>{{ chamado.titulo }}</h3>
+            <ion-badge [color]="getPriorityColor(chamado.prioridade)">{{ chamado.prioridade }}</ion-badge>
+          </div>
+          <p class="solicitante"><strong>Solicitante:</strong> {{ chamado.solicitante }}</p>
+          <div class="item-footer">
+            <span class="setor"><ion-icon name="business-outline"></ion-icon> {{ chamado.setor || 'N/A' }}</span>
+            <span class="data"><ion-icon name="calendar-outline"></ion-icon> {{ chamado.dataAbertura }}</span>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

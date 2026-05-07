@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sobre o Aplicativo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="ion-text-center ion-padding">
+    <ion-icon name="information-circle-outline" style="font-size: 64px;" color="primary"></ion-icon>
+    <h2>{{ projeto.nome }}</h2>
+  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Informações do Projeto</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Disciplina:</strong> {{ projeto.disciplina }}</p>
+      <p class="ion-margin-top"><strong>Objetivo:</strong></p>
+      <p>{{ projeto.objetivo }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tecnologias Utilizadas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-chip *ngFor="let tech of projeto.tecnologias" color="secondary">
+        <ion-label>{{ tech }}</ion-label>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="ion-text-center ion-margin-top">
+    <p><small>Versão 1.0.0</small></p>
+  </div>
+</ion-content>

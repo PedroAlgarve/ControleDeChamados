@@ -1,0 +1,93 @@
+.registration-container {
+  max-width: 500px;
+  margin: 0 auto;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  height: auto;
+  min-height: 400px;
+}
+
+.password-item {
+  position: relative;
+}
+
+.eye-toggle-button {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin: 0;
+  margin-top: 16px;
+  height: 36px;
+  width: 36px;
+  --background: transparent;
+  --background-hover: rgba(0, 0, 0, 0.05);
+  --border-radius: 50%;
+
+  ion-icon {
+    font-size: 22px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.header-section {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  h2 {
+    color: var(--ion-color-primary);
+    font-weight: 700;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 14px;
+  }
+}
+
+ion-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+ion-item {
+  margin-bottom: 10px;
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+ion-button {
+  height: 50px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.usuarios-list {
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+  margin-bottom: 20px;
+  background: white;
+
+  ion-item {
+    --background: transparent;
+    
+    h2 {
+      font-weight: 600;
+      color: var(--ion-color-dark);
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+      font-size: 13px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 5px;
+
+      ion-button {
+        margin: 0;
+        height: auto;
+      }
+    }
+  }
+}

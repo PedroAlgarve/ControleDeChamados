@@ -1,0 +1,24 @@
+ion-card {
+  border-radius: 15px;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+ion-item {
+  margin-bottom: 10px;
+  --highlight-color-focused: var(--ion-color-primary);
+  
+  ion-label {
+    font-weight: 600;
+  }
+}
+
+ion-button {
+  height: 50px;
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+ion-datetime-button {
+  margin-top: 10px;
+}

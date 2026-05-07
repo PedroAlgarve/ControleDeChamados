@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gestão de Técnicos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Formulário de Cadastro -->
+  <div class="section-title">
+    <h2>{{ isEditing ? 'Editar Técnico' : 'Novo Técnico' }}</h2>
+  </div>
+  
+  <ion-card mode="ios" class="form-card">
+    <ion-card-content>
+      <ion-item lines="full">
+        <ion-label position="floating">Nome Completo *</ion-label>
+        <ion-input type="text" [(ngModel)]="tecnico.nome"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">E-mail *</ion-label>
+        <ion-input type="email" [(ngModel)]="tecnico.email"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Telefone *</ion-label>
+        <ion-input type="tel" [(ngModel)]="tecnico.telefone" placeholder="(00) 00000-0000"></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Especialidade *</ion-label>
+        <ion-select [(ngModel)]="tecnico.especialidade" placeholder="Selecione">
+          <ion-select-option *ngFor="let esp of especialidades" [value]="esp">{{ esp }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <div class="button-group">
+        <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)="cadastrarTecnico()">
+          <ion-icon [name]="isEditing ? 'save-outline' : 'person-add-outline'" slot="start"></ion-icon>
+          {{ isEditing ? 'Salvar Alterações' : 'Adicionar Técnico' }}
+        </ion-button>
+        <ion-button *ngIf="isEditing" expand="block" shape="round" color="medium" fill="outline" class="ion-margin-top" (click)="cancelarEdicao()">
+          Cancelar
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Listagem de Técnicos -->
+  <div class="section-title ion-margin-top">
+    <h2>Equipe Técnica</h2>
+  </div>
+
+  <div class="tech-list">
+    <div *ngFor="let t of tecnicos" class="tech-card">
+      <div class="tech-info">
+        <div class="avatar-placeholder">{{ t.nome.charAt(0) }}</div>
+        <div class="details">
+          <h3>{{ t.nome }}</h3>
+          <p class="specialty">{{ t.especialidade }}</p>
+          <p class="contact"><ion-icon name="call-outline"></ion-icon> {{ t.telefone || t.contato }}</p>
+        </div>
+      </div>
+      
+      <div class="tech-actions">
+        <ion-button fill="solid" color="secondary" class="btn-edit" (click)="prepararEdicao(t)" title="Editar">
+          <ion-icon name="create" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="solid" [color]="t.situacao === 'Ativo' ? 'success' : 'medium'" class="btn-toggle" (click)="toggleSituacao(t)" title="Alternar Status">
+          <ion-icon [name]="t.situacao === 'Ativo' ? 'power' : 'power-outline'" slot="icon-only"></ion-icon>
+        </ion-button>
+        <ion-button fill="solid" color="danger" class="btn-delete" (click)="excluirTecnico(t.id)" title="Excluir">
+          <ion-icon name="trash-bin" slot="icon-only"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

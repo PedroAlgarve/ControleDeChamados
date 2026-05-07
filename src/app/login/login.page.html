@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <div class="logo-section">
+      <ion-icon name="construct-outline" color="primary"></ion-icon>
+      <h1>SupportHub</h1>
+      <p>Controle de Chamados Técnicos</p>
+    </div>
+
+    <ion-card mode="ios">
+      <ion-card-content>
+        <div class="form-group">
+          <ion-item lines="full">
+            <ion-label position="floating">Usuário</ion-label>
+            <ion-input type="text" [(ngModel)]="usuario" placeholder="Digite seu usuário"></ion-input>
+          </ion-item>
+
+          <ion-item lines="full">
+            <ion-label position="floating">Senha</ion-label>
+            <ion-input type="password" [(ngModel)]="senha" placeholder="Digite sua senha"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)="realizarLogin()">
+          Entrar
+        </ion-button>
+
+        <ion-button expand="block" fill="clear" color="secondary" (click)="navCtrl.navigateForward('/cadastro-usuario')">
+          Criar Conta
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="footer-section">
+      <p>© 2026 Controle de Chamados</p>
+    </div>
+  </div>
+</ion-content>

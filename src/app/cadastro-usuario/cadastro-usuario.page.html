@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Criar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="registration-container">
+    <div class="header-section">
+      <h2>Novo Usuário</h2>
+      <p>Preencha os dados abaixo para acessar o sistema.</p>
+    </div>
+
+    <ion-card mode="ios">
+      <ion-card-content>
+        <ion-item lines="full">
+          <ion-label position="floating">Nome Completo</ion-label>
+          <ion-input type="text" [(ngModel)]="nome" placeholder="Ex: João Silva"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="email" placeholder="email@exemplo.com"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Usuário de Acesso</ion-label>
+          <ion-input type="text" [(ngModel)]="usuario" placeholder="Como você quer entrar?"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="password-item">
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input [type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="senha" placeholder="Crie uma senha forte"></ion-input>
+          <ion-button fill="clear" slot="end" class="eye-toggle-button" (click)="toggleMostrarSenha()">
+            <ion-icon [name]="mostrarSenha ? 'eye-outline' : 'eye-off-outline'" slot="icon-only" color="medium"></ion-icon>
+          </ion-button>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)='salvarUsuario()'>
+          {{ editandoUsuarioId ? 'Salvar Alterações' : 'Cadastrar' }}
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="header-section" style="margin-top: 30px;" *ngIf="usuariosCadastrados.length > 0">
+      <h2>Usuários Cadastrados</h2>
+      <p>Abaixo estão os usuários já registrados no sistema.</p>
+    </div>
+
+    <ion-list class="usuarios-list">
+      <ion-item *ngFor="let u of usuariosCadastrados" lines="full">
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ u.nome }}</h2>
+          <p>{{ u.email }}</p>
+          <p><strong>Usuário:</strong> {{ u.usuario }}</p>
+        </ion-label>
+        <div slot="end" class="action-buttons">
+          <ion-button fill="solid" color="primary" size="small" (click)="editarUsuario(u)">
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            Editar
+          </ion-button>
+          <ion-button fill="solid" color="danger" size="small" (click)="excluirUsuario(u)">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            Excluir
+          </ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>
